@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 14:32:10 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 13:57:59 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 16:41:47 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,9 +18,10 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 	char	*tmp;
 	char	*tmp2;
 	size_t	lmalloc;
-
+	
 	if (!(tmp = ft_apply_convert(pf, ap)))
 		return (NULL);
+	dprintf(1, "tmp :\t%s\n", tmp);
 	if (ft_char_in_string('.', pf->flags) && pf->accu > ft_strlen(tmp) &&
 		ft_char_in_string(pf->option, "diuxX"))
 	{
@@ -38,7 +39,6 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 		tmp = (ft_calloc(1, 1));
 	if (!(str = ft_strfjoin(tmp, str, 1)))
 		return (NULL);
-	//dprintf(1, "str : |%s|\n", str);
 	ft_bzero(&pf->width, sizeof(size_t) * 2);
 	return (str);
 }

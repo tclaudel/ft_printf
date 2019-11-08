@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 13:42:08 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 16:42:54 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -226,12 +226,12 @@ int		main(void)
 	else
 		print_error(&testko);
 
-	// tested++;
-	// print_testing("\"|%.46s|\\n\", NULL");
-	// if (printf("printf    :\t|%.46s|\n", NULL) == ft_printf("ft_printf :\t|%.46s|\n", NULL))
-	// 	print_ok(&testok);
-	// else
-	// 	print_error(&testko);
+	tested++;
+	print_testing("\"|%.46s|\\n\", NULL");
+	if (printf("printf    :\t|%.46s|\n", NULL) == ft_printf("ft_printf :\t|%.46s|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
 
 	tested++;
 	print_testing("\"|%.46s|\\n\", \"\"");
@@ -296,6 +296,39 @@ int		main(void)
 		print_error(&testko);
 
 	ft_printf("ft_printf :\t|%.0c|\n", 'c');
+		print_undef();
+
+	dprintf(1, ">------------------ P TEST ------------------<\n\n");
+
+	tested++;
+	print_testing("\"|%p|\\n\", 0");
+	if (printf("printf    :\t|%p|\n", 0) == ft_printf("ft_printf :\t|%p|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%p|\\n\", NULL");
+	if (printf("printf    :\t|%p|\n", NULL) == ft_printf("ft_printf :\t|%p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%54p|\\n\", NULL");
+	if (printf("printf    :\t|%54p|\n", NULL) == ft_printf("ft_printf :\t|%54p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%054p|\\n\", NULL");
+	if (printf("printf    :\t|%054p|\n", NULL) == ft_printf("ft_printf :\t|%054p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	ft_printf("ft_printf :\t|%0.54p|\n", NULL);
 		print_undef();
 
 	dprintf(1, ">---------------- MORGAN TEST ---------------<\n\n");

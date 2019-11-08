@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 15:08:38 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/07 14:08:17 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 16:32:13 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ char	*ft_apply_convert(t_printf *pf, va_list ap)
 	else if (pf->option == 'i')
 		tmp = ft_i_converter(va_arg(ap, int));
 	else if (pf->option == 'p')
-		tmp = ft_p_converter(va_arg(ap, long long));
+		tmp = ft_p_converter(va_arg(ap, long long), pf);
 	else if (pf->option == 's')
 		tmp = ft_s_converter(va_arg(ap, char *), pf->accu, pf->flags);
 	else if (pf->option == 'u')

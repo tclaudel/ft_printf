@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/07 14:07:04 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 16:32:04 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@ char				*ft_c_converter(int nb, t_printf *pf);
 char				*ft_d_converter(int nb);
 char				*ft_i_converter(int nb);
 char				*ft_s_converter(char *str, size_t width, char *flags);
-char				*ft_p_converter(long long address);/*, char *flags, size_t accu)*/
+char				*ft_p_converter(long long address, t_printf *pf);
 char				*ft_u_converter(unsigned int nb);
 char				*ft_x_converter(unsigned int nb);
 char				*ft_upx_converter(unsigned int nb);
