@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_printf.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 16:23:21 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/09 14:57:30 by coscialp    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -90,6 +90,8 @@ int			ft_printf(const char *s, ...)
 	if (!ft_memchr(s, '%', ft_strlen(s)))
 	{
 		ft_putstr(s);
+		va_end(ap);
+		free(pf);
 		return (ft_strlen(s));
 	}
 	if (!(pos = ft_core_printf(s, pos, pf, ap)))

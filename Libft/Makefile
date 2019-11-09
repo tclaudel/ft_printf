@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/11 16:32:18 by tclaudel     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 09:53:30 by tclaudel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/09 17:37:23 by coscialp    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -47,7 +47,7 @@ FLAG	= -Wall -Werror -Wextra -g3 #-fsanitize=address
 all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 	@echo "$'[32m\nCompiling effected successfully!"
 
 %.o: $(SRC_PATH)%.c $(HEADER)
