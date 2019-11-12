@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 14:42:59 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 14:54:47 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,22 +41,13 @@ char			*ft_u_converter(unsigned int nb);
 char			*ft_x_converter(unsigned int nb);
 char			*ft_upx_converter(unsigned int nb);
 char			*ft_pourcent_converter(void);
-
-//		<== DETECTORS ==>
-
 int				ft_is_pourcent(char c);
 int				ft_is_flag(char c);
 int				ft_is_option(char c);
-
-//		<== ANALYSER ==>
-
 char			*ft_analyser(char *tmp, t_printf *pf, va_list ap);
 t_printf		*ft_set_flags(t_printf *pf, char *str);
 char			*ft_new_fmt(char *old, t_printf *pf);
 char			*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i);
-
-//		<== ROUTER ==>
-
 char			*ft_router(char *str, t_printf *pf, va_list ap);
 char			*ft_apply_flags(char *str, char *flags, size_t width);
 char			*ft_apply_convert(t_printf *pf, va_list ap);
