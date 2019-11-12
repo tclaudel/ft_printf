@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   test.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 17:25:07 by coscialp    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 11:35:57 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,6 +14,7 @@
 #include "libftprintf.h"
 
 #include <stdio.h>
+#include <limits.h>
 
 void	print_error (size_t *i)
 {
@@ -145,8 +146,43 @@ int		main(void)
 		print_error(&testko);
 	
 	tested++;
-	print_testing("\"|%046d|\\n\", -2147483648");
-	if (printf("printf    :\t|%046d|\n", -2147483647) == ft_printf("ft_printf :\t|%046d|\n", -2147483647))
+	print_testing("\"|%046d|\\n\", INT_MIN");
+	if (printf("printf    :\t|%046d|\n", INT_MIN) == ft_printf("ft_printf :\t|%046d|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046d|\\n\", INT_MAX");
+	if (printf("printf    :\t|%046d|\n", INT_MAX) == ft_printf("ft_printf :\t|%046d|\n", INT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%d|\\n\", INT_MIN");
+	if (printf("printf    :\t|%d|\n", INT_MIN) == ft_printf("ft_printf :\t|%d|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%d|\\n\", INT_MAX");
+	if (printf("printf    :\t|%d|\n", INT_MAX) == ft_printf("ft_printf :\t|%d|\n", INT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-54d|\\n\", INT_MIN");
+	if (printf("printf    :\t|%-54d|\n", INT_MIN) == ft_printf("ft_printf :\t|%-54d|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%d|\\n\", INT_MAX");
+	if (printf("printf    :\t|%-54d|\n", INT_MAX) == ft_printf("ft_printf :\t|%-54d|\n", INT_MAX))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -206,6 +242,62 @@ dprintf(1, ">------------------ I TEST ------------------<\n\n");
 	else
 		print_error(&testko);
 
+	tested++;
+	print_testing("\"|%046i|\\n\", INT_MIN");
+	if (printf("printf    :\t|%046i|\n", INT_MIN) == ft_printf("ft_printf :\t|%046i|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046i|\\n\", INT_MAX");
+	if (printf("printf    :\t|%046i|\n", INT_MAX) == ft_printf("ft_printf :\t|%046i|\n", INT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%i|\\n\", INT_MIN");
+	if (printf("printf    :\t|%i|\n", INT_MIN) == ft_printf("ft_printf :\t|%i|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%i|\\n\", INT_MAX");
+	if (printf("printf    :\t|%i|\n", INT_MAX) == ft_printf("ft_printf :\t|%i|\n", INT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%i|\\n\", INT_MIN - 1");
+	if (printf("printf    :\t|%i|\n", INT_MIN - 1) == ft_printf("ft_printf :\t|%i|\n", INT_MIN - 1))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%i|\\n\", INT_MAX + 1");
+	if (printf("printf    :\t|%i|\n", INT_MAX + 1) == ft_printf("ft_printf :\t|%i|\n", INT_MAX + 1))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-54i|\\n\", INT_MIN");
+	if (printf("printf    :\t|%-54i|\n", INT_MIN) == ft_printf("ft_printf :\t|%-54i|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%i|\\n\", INT_MAX");
+	if (printf("printf    :\t|%-54i|\n", INT_MAX) == ft_printf("ft_printf :\t|%-54i|\n", INT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
 dprintf(1, ">------------------ U TEST ------------------<\n\n");
 
 	tested++;
@@ -261,6 +353,48 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	else
 		print_error(&testko);
 
+	tested++;
+	print_testing("\"|%046u|\\n\", 0");
+	if (printf("printf    :\t|%046u|\n", 0) == ft_printf("ft_printf :\t|%046u|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046u|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%046u|\n", UINT_MAX) == ft_printf("ft_printf :\t|%046u|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%u|\\n\", 0");
+	if (printf("printf    :\t|%u|\n", 0) == ft_printf("ft_printf :\t|%u|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%u|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%u|\n", UINT_MAX) == ft_printf("ft_printf :\t|%u|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-54u|\\n\", 0");
+	if (printf("printf    :\t|%-54u|\n", 0) == ft_printf("ft_printf :\t|%-54u|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%u|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%-54u|\n", UINT_MAX) == ft_printf("ft_printf :\t|%-54u|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
 	dprintf(1, ">------------------ x TEST ------------------<\n\n");
 
 	tested++;
@@ -311,8 +445,43 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
-	print_testing("\"|%046x|\\n\", 2147483648");
-	if (printf("printf    :\t|%046x|\n", 2147483647) == ft_printf("ft_printf :\t|%046x|\n", 2147483647))
+	print_testing("\"|%046x|\\n\", 0");
+	if (printf("printf    :\t|%046x|\n", 0) == ft_printf("ft_printf :\t|%046x|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046x|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%046x|\n", UINT_MAX) == ft_printf("ft_printf :\t|%046x|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%x|\\n\", 0");
+	if (printf("printf    :\t|%x|\n", 0) == ft_printf("ft_printf :\t|%x|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%x|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%x|\n", UINT_MAX) == ft_printf("ft_printf :\t|%x|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-54x|\\n\", 0");
+	if (printf("printf    :\t|%-54x|\n", 0) == ft_printf("ft_printf :\t|%-54x|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%x|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%-54x|\n", UINT_MAX) == ft_printf("ft_printf :\t|%-54x|\n", UINT_MAX))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -367,8 +536,43 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
-	print_testing("\"|%046X|\\n\", 2147483648");
-	if (printf("printf    :\t|%046X|\n", 2147483647) == ft_printf("ft_printf :\t|%046X|\n", 2147483647))
+	print_testing("\"|%046X|\\n\", 0");
+	if (printf("printf    :\t|%046X|\n", 0) == ft_printf("ft_printf :\t|%046X|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046X|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%046X|\n", UINT_MAX) == ft_printf("ft_printf :\t|%046X|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%X|\\n\", 0");
+	if (printf("printf    :\t|%X|\n", 0) == ft_printf("ft_printf :\t|%X|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%X|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%X|\n", UINT_MAX) == ft_printf("ft_printf :\t|%X|\n", UINT_MAX))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-54X|\\n\", 0");
+	if (printf("printf    :\t|%-54X|\n", 0) == ft_printf("ft_printf :\t|%-54X|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%X|\\n\", UINT_MAX");
+	if (printf("printf    :\t|%-54X|\n", UINT_MAX) == ft_printf("ft_printf :\t|%-54X|\n", UINT_MAX))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -485,6 +689,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	print_testing("\"|%0.46s|\\n\", \"\"");
 	ft_printf("ft_printf :\t|%046s|\n", "");
 		print_undef();
+	
+	tested++;
+	print_testing("\"|%s|\\n\", bonj\\200our");
+	if (printf("printf    :\t|%s|\n", "bonj\200our") == ft_printf("ft_printf :\t|%s|\n", "bonj\200our"))
+		print_ok(&testok);
+	else
+		print_error(&testko);
 
 	dprintf(1, ">------------------ C TEST ------------------<\n\n");
 
@@ -521,6 +732,8 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 
 	dprintf(1, ">------------------ P TEST ------------------<\n\n");
 
+	char *str = ft_strdup("bonjour");
+
 	print_testing("\"|%p|\\n\", 0");
 	ft_printf("ft_printf :\t|%p|\n", 0);
 	print_undef();
@@ -528,6 +741,27 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	tested++;
 	print_testing("\"|%p|\\n\", NULL");
 	if (printf("printf    :\t|%p|\n", NULL) == ft_printf("ft_printf :\t|%p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%p|\\n\", &str + 100000");
+	if (printf("printf    :\t|%p|\n", str + 100000) == ft_printf("ft_printf :\t|%p|\n", str + 100000))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%p|\\n\", &tested");
+	if (printf("printf    :\t|%p|\n", &tested) == ft_printf("ft_printf :\t|%p|\n", &tested))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%p|\\n\", &str");
+	if (printf("printf    :\t|%p|\n", str) == ft_printf("ft_printf :\t|%p|\n", str))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -542,6 +776,15 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	print_testing("\"|%054p|\\n\", NULL");
 	ft_printf("ft_printf :\t|%0.54p|\n", NULL);
 		print_undef();
+
+	tested++;
+	print_testing("\"|%p|\\n\", NULL");
+	if (printf("printf    :\t|%p|\n", NULL) == ft_printf("ft_printf :\t|%p|\n", NULL))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	ft_strdel(&str);
 
 	dprintf(1, ">---------------- MORGAN TEST ---------------<\n\n");
 
@@ -558,6 +801,57 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_ok(&testok);
 	else
 		print_error(&testko);
+
+	// dprintf(1, ">---------------- ASCII TEST ---------------<\n\n");
+
+	// print_testing("all ascii char");
+	// unsigned int u;
+
+	// u = 0;
+	// while (u < 255)
+	// {
+	// 	tested++;
+	// 	if (printf("printf    :\t|%c|\n", u) == ft_printf("ft_printf :\t|%c|\n", u))
+	// 		testok++;
+	// 	else
+	// 	{
+	// 		testko++;
+	// 		print_error(&testko);
+	// 	}
+	// 	u++;
+	// }
+
+	// print_testing("all ascii char");
+
+	// u = 0;
+	// while (u < 255)
+	// {
+	// 	tested++;
+	// 	if (printf("printf    :\t|%54c|\n", u) == ft_printf("ft_printf :\t|%54c|\n", u))
+	// 		testok++;
+	// 	else
+	// 	{
+	// 		testko++;
+	// 		print_error(&testko);
+	// 	}
+	// 	u++;
+	// }
+
+	// print_testing("all ascii char");
+
+	// u = 0;
+	// while (u < 255)
+	// {
+	// 	tested++;
+	// 	if (printf("printf    :\t|%-5c|\n", u) == ft_printf("ft_printf :\t|%-5c|\n", u))
+	// 		testok++;
+	// 	else
+	// 	{
+	// 		tested++;
+	// 		print_error(&testko);
+	// 	}
+	// 	u++;
+	// }
 
 	print_result(tested, testok, testko);
 }

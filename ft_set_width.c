@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/31 11:46:02 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 15:47:35 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 09:20:12 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,8 +18,10 @@ int		ft_set_accu_width(t_printf *pf, char *str, size_t i)
 	if (str[i - 1] == '.')
 		pf->accu = ft_atoi(str + i);
 	else
-		if(!(pf->width > 0 && pf->accu == 0))
+	{
+		if (!(pf->width > 0 && pf->accu == 0))
 			pf->width = ft_atoi(str + i);
+	}
 	while (ft_isdigit(str[i]))
 		i++;
 	return (i);
@@ -50,6 +52,5 @@ char	*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i)
 			break ;
 		}
 	}
-	
 	return (str + i);
 }

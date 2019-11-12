@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftprintf.h                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 17:19:46 by coscialp    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 11:22:27 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ int		ft_printf(const char *incstr, ...);
 //		<== CONVERTERS ==>
 
 char				*ft_c_converter(int nb, t_printf *pf);
-char				*ft_d_converter(int nb, t_printf *pf);
+char				*ft_d_converter(int nb, t_printf *pf, size_t u, size_t len);
 char				*ft_i_converter(int nb);
 char				*ft_s_converter(char *str, size_t width, char *flags);
 char				*ft_p_converter(long long address, t_printf *pf);

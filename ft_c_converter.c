@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:31:22 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/06 10:41:55 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 11:25:32 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,5 +23,7 @@ char	*ft_c_converter(int nb, t_printf *pf)
 	c[1] = 0;
 	if (nb == 0)
 		pf->return_size++;
+	if (pf->width != 0 && nb == 0)
+		pf->width -= 1;
 	return (c);
 }

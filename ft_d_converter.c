@@ -3,35 +3,34 @@
 /*                                                              /             */
 /*   ft_d_converter.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 10:36:18 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 17:28:45 by coscialp    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/12 09:23:31 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/12 11:22:41 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_d_converter(int nb, t_printf *pf)
+char	*ft_d_converter(int nb, t_printf *pf, size_t u, size_t len)
 {
-	size_t	size;
-	size_t	len;
-	char	*tmp;
-	char	*str;
+	size_t			size;
+	char			*tmp;
+	char			*str;
 
-	len = 0;
+	u = nb;
 	if (nb < 0)
 	{
 		if (!(tmp = (char *)ft_calloc(sizeof(char), 2)))
 			return (NULL);
 		tmp[0] = '-';
-		nb = -nb;
+		u = -u;
 		len++;
 	}
 	else
 		tmp = ft_strdup("");
-	if (!(str = ft_itoa(nb)))
+	if (!(str = ft_itoa_u_base(u, "0123456789")))
 		return (NULL);
 	len += ft_strlen(str);
 	size = (pf->width > len ? pf->width - len : 0);

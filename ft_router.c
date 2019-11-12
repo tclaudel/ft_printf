@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_router.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/30 14:32:10 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 15:53:53 by coscialp    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/12 09:23:56 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/12 11:18:15 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,28 +15,28 @@
 
 char	*ft_router(char *str, t_printf *pf, va_list ap)
 {
-	char	*tmp;
-	char	*tmp2;
+	char	*t[2];
 
-	if (!(tmp = ft_apply_convert(pf, ap)))
+	if (!(t[0] = ft_apply_convert(pf, ap)))
 		return (NULL);
-	if (ft_char_in_string('.', pf->flags) && pf->accu > ft_strlen(tmp) &&
+	if (ft_char_in_string('.', pf->flags) && pf->accu > ft_strlen(t[0]) &&
 		ft_char_in_string(pf->option, "diuxX"))
 	{
-		if (!(tmp2 = ft_calloc(sizeof(char), pf->accu - ft_strlen(tmp) + 1)))
+		if (!(t[1] = ft_calloc(sizeof(char), pf->accu - ft_strlen(t[0]) + 1)))
 			return (NULL);
-		ft_memset(tmp2, '0', pf->accu - ft_strlen(tmp));
-		if (!(tmp = ft_strfjoin(tmp2, tmp, 3)))
+		ft_memset(t[1], '0', pf->accu - ft_strlen(t[0]));
+		if (!(t[0] = ft_strfjoin(t[1], t[0], 3)))
 			return (NULL);
 	}
-	if (!(tmp = ft_apply_flags(tmp, pf->flags, pf->width)))
+	if (!(t[0] = ft_apply_flags(t[0], pf->flags, pf->width)))
 		return (NULL);
-	if (!ft_memcmp(tmp, "0", ft_strlen(tmp)))
+	if (!ft_memcmp(t[0], "0", ft_strlen(t[0])) && pf->option != 'c' &&
+	ft_char_in_string('.', pf->flags))
 	{
-		ft_strdel(&tmp);
-		tmp = (ft_calloc(1, 1));
+		ft_strdel(&t[0]);
+		t[0] = (ft_calloc(1, 1));
 	}
-	if (!(str = ft_strfjoin(tmp, str, 1)))
+	if (!(str = ft_strfjoin(t[0], str, 1)))
 		return (NULL);
 	ft_bzero(&pf->width, sizeof(size_t) * 2);
 	return (str);

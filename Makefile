@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/11 16:32:18 by tclaudel     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/09 17:36:45 by coscialp    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/12 09:15:52 by tclaudel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -55,4 +55,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re bonus
-

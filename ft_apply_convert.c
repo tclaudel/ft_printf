@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_apply_convert.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: coscialp <coscialp@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/30 15:08:38 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 17:35:29 by coscialp    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/12 09:23:17 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/12 11:22:49 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ char	*ft_apply_convert(t_printf *pf, va_list ap)
 	if (pf->option == 'c')
 		tmp = ft_c_converter(va_arg(ap, int), pf);
 	else if (pf->option == 'd' || pf->option == 'i')
-		tmp = ft_d_converter(va_arg(ap, int), pf);
+		tmp = ft_d_converter(va_arg(ap, int), pf, 0, 0);
 	else if (pf->option == 'p')
 		tmp = ft_p_converter(va_arg(ap, long long), pf);
 	else if (pf->option == 's')
