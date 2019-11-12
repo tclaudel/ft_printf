@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 11:22:27 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 14:37:28 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,15 +24,14 @@ typedef struct		s_printf
 {
 	char		flags[5];
 	char		option;
+	int			zero;
 	size_t		width;
 	size_t		accu;
 	size_t		return_size;
 }					t_printf;
 
 int		ft_printf(const char *incstr, ...);
-
-//		<== CONVERTERS ==>
-
+char	*ft_strjoin_zero(char *s1, char *s2);
 char				*ft_c_converter(int nb, t_printf *pf);
 char				*ft_d_converter(int nb, t_printf *pf, size_t u, size_t len);
 char				*ft_i_converter(int nb);

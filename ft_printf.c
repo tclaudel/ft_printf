@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 09:23:49 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 14:05:53 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,9 +22,24 @@ t_printf	*setup_struct(void)
 	setup->width = 0;
 	setup->option = 0;
 	setup->accu = 0;
+	setup->zero = 0;
 	setup->return_size = 0;
 	ft_bzero(setup->flags, 5);
 	return (setup);
+}
+
+char	*ft_join_result(char *result, char *tmp, t_printf *pf)
+{
+	pf->return_size += ft_strlen(tmp);
+	if (pf->option == 'c' && pf->zero == 1)
+	{
+		if (!(result = ft_strjoin_zero(result, tmp)))
+			return (NULL);
+	}
+	else
+		if (!(result = ft_strfjoin(result, tmp, 3)))
+			return (NULL);
+	return (result);
 }
 
 char		**ft_set_tmp(const char *str)
@@ -67,12 +82,12 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 		if (!(tmp[3] = ft_analyser(tmp[2], pf, ap)))
 			return (0);
 		free(tmp[2]);
-		if (!(result = ft_strfjoin(result, tmp[3], 3)))
+		if (!(result = ft_join_result(result, tmp[3], pf)))
 			return (0);
 		free(tmp);
 	}
-	pos = ft_strlen(result) + pf->return_size;
-	ft_putstr(result);
+	pos += pf->return_size;
+	write(1, result, pos);
 	free(result);
 	return (pos);
 }

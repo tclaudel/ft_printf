@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_c_converter.c                                 .::    .:/ .      .::   */
+/*   ft_strjoin_zero.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 10:31:22 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 13:22:26 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/12 13:24:20 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/12 13:58:37 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_c_converter(int nb, t_printf *pf)
+char	*ft_strjoin_zero(char *s1, char *s2)
 {
-	char *c;
+	size_t		lmalloc;
+	char		*str;
+	size_t		i;
+	size_t		ls1;
 
-	if (!(c = malloc(sizeof(char) * 2)))
+	i = 0;
+	ls1 = ft_strlen(s1);
+	lmalloc = ls1 + ft_strlen(s2);
+	if (!(str = (char *)ft_calloc(sizeof(char), (lmalloc + 2))))
 		return (NULL);
-	c[0] = nb;
-	c[1] = 0;
-	if (nb == 0)
-	{
-		pf->zero = 1;
-		pf->return_size++;
-	}
-	if (pf->width != 0 && nb == 0)
-		pf->width -= 1;
-	return (c);
+	ft_memcpy(str, s1, ls1);
+	ft_memcpy(str + ls1 + 1, s2, ft_strlen(s2) + 1);
+	ft_strdel(&s1);
+	ft_strdel(&s2);
+	return (str);
 }

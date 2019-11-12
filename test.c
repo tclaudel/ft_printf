@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 11:35:57 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 14:04:15 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,6 +80,8 @@ int		main(void)
 	size_t	testok = 0;
 	size_t	testko = 0;
 	
+	fflush(stdout);
+
 	dprintf(1, ">--------------- CLASSIC TEST ---------------<\n\n");
 	
 	tested++;
@@ -707,6 +709,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
+	print_testing("\"|%-46c|\\n\", 0");
+	if (printf("printf    :\t|%-46c|\n", 0) == ft_printf("ft_printf :\t|%-46c|\n", 0))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
 	print_testing("\"|%c|\\n\", 'c'");
 	if (printf("printf    :\t|%c|\n", 'c') == ft_printf("ft_printf :\t|%c|\n", 'c'))
 		print_ok(&testok);
@@ -801,6 +810,27 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_ok(&testok);
 	else
 		print_error(&testko);
+
+	dprintf(1, ">--------------- MDELARBR TEST --------------<\n\n");
+
+	char *tmp;
+
+	tmp = NULL;
+	tested++;
+	print_testing("\"|%p|\\n\", 0");
+	if (printf("printf    :\t|%p|\n", tmp) == ft_printf("ft_printf :\t|%p|\n", tmp))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tmp = ft_strdup("monais monaie mauney");
+	tested++;
+	print_testing("\"|%p|\\n\", 0");
+	if (printf("printf    :\t|%p|\n", tmp) == ft_printf("ft_printf :\t|%p|\n", tmp))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+	free(tmp);
 
 	// dprintf(1, ">---------------- ASCII TEST ---------------<\n\n");
 
