@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 14:05:53 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 14:48:31 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ t_printf	*setup_struct(void)
 	return (setup);
 }
 
-char	*ft_join_result(char *result, char *tmp, t_printf *pf)
+char		*ft_join_result(char *result, char *tmp, t_printf *pf)
 {
 	pf->return_size += ft_strlen(tmp);
 	if (pf->option == 'c' && pf->zero == 1)
@@ -37,8 +37,10 @@ char	*ft_join_result(char *result, char *tmp, t_printf *pf)
 			return (NULL);
 	}
 	else
+	{
 		if (!(result = ft_strfjoin(result, tmp, 3)))
 			return (NULL);
+	}
 	return (result);
 }
 
