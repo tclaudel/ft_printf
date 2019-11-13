@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 14:04:15 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 11:34:45 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@ void	print_result(size_t tested, size_t ok, size_t ko)
 
 	pourcentok = ok * 100 / tested;
 	dprintf(1, ">------------------ RESULT ------------------<\n\n");
+
 	dprintf(1, "\033[1;90m");
 	dprintf(1, "\tTESTED : %zu\n", tested);
 	dprintf(1, "\033[0m");
@@ -114,6 +115,26 @@ int		main(void)
 	else
 		print_error(&testko);
 
+	tested++;
+	print_testing("\"|%45d\\n|\", -87");
+	if (printf("printf    :\t|%45d|\n", -87) == ft_printf("ft_printf :\t|%45d|\n", -87))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%*d\\n|\", -9, -87");
+	if (printf("printf    :\t|%*d|\n", -9, -87) == ft_printf("ft_printf :\t|%*d|\n", -9, -87))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-*d\\n|\", -9, -87");
+	if (printf("printf    :\t|%-*d|\n", -9, -87) == ft_printf("ft_printf :\t|%-*d|\n", -9, -87))
+		print_ok(&testok);
+	else
+		print_error(&testko);
 
 	print_testing("\"%.*d|\\n\", 45");
 	if (ft_printf("ft_printf :\t|%.*d|\n", 45))
@@ -139,10 +160,48 @@ int		main(void)
 		print_ok(&testok);
 	else
 		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%--d|\\n\", 45");
+	if (printf("printf    :\t|%--d|\n", 45) == ft_printf("ft_printf :\t|%--d|\n", 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
 	
 	tested++;
-	print_testing("\"|%.46d|\\n\", 45");
-	if (printf("printf    :\t|%.46d|\n", 45) == ft_printf("ft_printf :\t|%.46d|\n", 45))
+	print_testing("\"|%.046d|\\n\", 45");
+	if (printf("printf    :\t|%.046d|\n", 45) == ft_printf("ft_printf :\t|%.046d|\n", 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%046d|\\n\", 45");
+	if (printf("printf    :\t|%046d|\n", 45) == ft_printf("ft_printf :\t|%046d|\n", 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-*046d|\\n\", 15, 45");
+	if (printf("printf    :\t|%-*d|\n", 15, 45) == ft_printf("ft_printf :\t|%-*d|\n", 15, 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	ft_printf("ft_printf :\t|%**46d|\n", 15, 10, 45);
+		print_undef();
+
+	tested++;
+	print_testing("\"|%*d|\\n\", -9, 45");
+	if (printf("printf    :\t|%*d|\n", -9, 45) == ft_printf("ft_printf :\t|%*d|\n", -9, 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-*d|\\n\", -9, 45");
+	if (printf("printf    :\t|%-*d|\n", -9, 45) == ft_printf("ft_printf :\t|%-*d|\n", -9, 45))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -164,6 +223,13 @@ int		main(void)
 	tested++;
 	print_testing("\"|%d|\\n\", INT_MIN");
 	if (printf("printf    :\t|%d|\n", INT_MIN) == ft_printf("ft_printf :\t|%d|\n", INT_MIN))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%-55d|\\n\", INT_MIN");
+	if (printf("printf    :\t|%-55d|\n", INT_MIN) == ft_printf("ft_printf :\t|%-55d|\n", INT_MIN))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -482,7 +548,7 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
-	print_testing("\"|%x|\\n\", UINT_MAX");
+	print_testing("\"|%-54x|\\n\", UINT_MAX");
 	if (printf("printf    :\t|%-54x|\n", UINT_MAX) == ft_printf("ft_printf :\t|%-54x|\n", UINT_MAX))
 		print_ok(&testok);
 	else
@@ -526,6 +592,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	tested++;
 	print_testing("\"|%X|\\n\", 45");
 	if (printf("printf    :\t|%X|\n", 45) == ft_printf("ft_printf :\t|%X|\n", 45))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%X|\\n\", 20");
+	if (printf("printf    :\t|%X|\n", 20) == ft_printf("ft_printf :\t|%X|\n", 20))
 		print_ok(&testok);
 	else
 		print_error(&testko);
@@ -605,6 +678,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	tested++;
 	print_testing("\"|%*5s|\\n\",  5,bonjour");
 	if (printf("printf    :\t|%*s|\n", 5, "bonjour") == ft_printf("ft_printf :\t|%*s|\n", 5,"bonjour"))
+		print_ok(&testok);
+	else
+		print_error(&testko);
+
+	tested++;
+	print_testing("\"|%*5s|\\n\",  -50, bonjour");
+	if (printf("printf    :\t|%*s|\n", -50, "bonjour") == ft_printf("ft_printf :\t|%*s|\n", -50,"bonjour"))
 		print_ok(&testok);
 	else
 		print_error(&testko);
