@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/31 11:46:02 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 10:33:02 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 13:01:57 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,14 @@ size_t	ft_wildcard(int nb, t_printf *pf)
 	{
 		n = -nb;
 		if (!ft_char_in_string('-', pf->flags))
+		{
+			if (ft_char_in_string('.', pf->flags))
+			{
+				pf->accu = n;
+				return (0);
+			}
 			pf->flags[i] = '-';
+		}	
 	}
 	else
 		n = nb;
@@ -57,7 +64,7 @@ char	*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i)
 		if (str[i] == '*')
 		{
 			pf->width = ft_wildcard(va_arg(ap, int), pf);
-			if (str[i++ - 1] == '.')
+			if (str[i++ - 1] == '.' && ft_char_in_string('-', pf->flags))
 				pf->accu = pf->width;
 		}
 		else
