@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 11:34:45 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 09:14:30 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -683,11 +683,18 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 		print_error(&testko);
 
 	tested++;
-	print_testing("\"|%*5s|\\n\",  -50, bonjour");
+	print_testing("\"|%*s|\\n\",  -50, bonjour");
 	if (printf("printf    :\t|%*s|\n", -50, "bonjour") == ft_printf("ft_printf :\t|%*s|\n", -50,"bonjour"))
 		print_ok(&testok);
 	else
 		print_error(&testko);
+
+	// tested++;
+	// print_testing("\"|%.-50s|\\n\",  bonjour");
+	// if (printf("printf    :\t|%.-50s|\n", "bonjour") == ft_printf("ft_printf :\t|%.-50s|\n", "bonjour"))
+	// 	print_ok(&testok);
+	// else
+	// 	print_error(&testko);
 
 	tested++;
 	print_testing("\"|%16s|\\n\", bonjour");
@@ -891,8 +898,6 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	else
 		print_error(&testko);
 
-	dprintf(1, ">--------------- MDELARBR TEST --------------<\n\n");
-
 	char *tmp;
 
 	tmp = NULL;
@@ -911,6 +916,13 @@ dprintf(1, ">------------------ U TEST ------------------<\n\n");
 	else
 		print_error(&testko);
 	free(tmp);
+
+	tested++;
+	print_testing("\"|%.*s|\\n\",  -50, bonjour");
+	if (printf("printf    :\t|%.*s|\n", -50, "bonjour") == ft_printf("ft_printf :\t|%.*s|\n", -50,"bonjour"))
+		print_ok(&testok);
+	else
+		print_error(&testko);
 
 	// dprintf(1, ">---------------- ASCII TEST ---------------<\n\n");
 
