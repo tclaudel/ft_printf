@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 10:54:18 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 13:57:00 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/15 15:34:30 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 
 int		main(void)
 {
-	if (printf("printf    :\t|%c|\n", 0) == ft_printf("ft_printf :\t|%c|\n", 0))
+	if (printf("printf    :\t|%-.p|\n", NULL) == ft_printf("ft_printf :\t|%-.p|\n", NULL))
 		puts("success");
 	else
 		puts("error");

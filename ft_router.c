@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 09:23:56 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 11:18:15 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/15 15:10:32 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 	}
 	if (!(t[0] = ft_apply_flags(t[0], pf->flags, pf->width)))
 		return (NULL);
-	if (!ft_memcmp(t[0], "0", ft_strlen(t[0])) && pf->option != 'c' &&
+	if (!ft_memcmp(t[0], "0", ft_strlen(t[0])) &&
 	ft_char_in_string('.', pf->flags))
 	{
 		ft_strdel(&t[0]);

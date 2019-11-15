@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 14:48:31 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/15 09:48:00 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,7 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 }
 
 int			ft_printf(const char *s, ...)
+//	__attribute__((format(printf, 1, 2)));
 {
 	va_list		ap;
 	size_t		pos;
