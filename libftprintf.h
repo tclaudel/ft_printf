@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 10:18:29 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 11:23:52 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ typedef struct	s_printf
 {
 	char		flags[5];
 	char		option;
-	int			zero;
+	char		zero;
 	size_t		width;
 	size_t		accu;
 	size_t		return_size;
@@ -33,7 +33,7 @@ typedef struct	s_printf
 int				ft_printf(const char *fmt, ...);
 char			*ft_strjoin_zero(char *s1, char *s2);
 char			*ft_c_converter(int nb, t_printf *pf);
-char			*ft_d_converter(int nb, t_printf *pf, size_t u, size_t len);
+char			*ft_d_converter(int nb);
 char			*ft_i_converter(int nb);
 char			*ft_s_converter(char *str, size_t width, char *flags);
 char			*ft_p_converter(long long address, t_printf *pf);
@@ -49,7 +49,9 @@ t_printf		*ft_set_flags(t_printf *pf, char *str);
 char			*ft_new_fmt(char *old, t_printf *pf);
 char			*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i);
 char			*ft_router(char *str, t_printf *pf, va_list ap);
-char			*ft_apply_flags(char *str, char *flags, size_t width);
+char			*ft_apply_flags(char *str, t_printf *pf);
 char			*ft_apply_convert(t_printf *pf, va_list ap);
+int				ft_isone_nine(int c);
+int				ft_is_in_flags(char c, t_printf *pf);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 10:54:18 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/15 15:34:30 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 11:07:43 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,12 +14,16 @@
 #include "libftprintf.h"
 
 #include <stdio.h>
+#include <limits.h>
 
 int		main(void)
 {
-	if (printf("printf    :\t|%-.p|\n", NULL) == ft_printf("ft_printf :\t|%-.p|\n", NULL))
-		puts("success");
+	int i;
+
+	i = 0;
+	if ((i = printf("|%s|\n", "-24")) == (ft_printf("|%s|\n", "-24")))
+		puts("SUCCEED");
 	else
-		puts("error");
-	return(1);
+		puts("ERROR");
+	printf("%d\n", i);
 }

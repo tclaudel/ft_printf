@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_s_converter.c                                 .::    .:/ .      .::   */
+/*   ft_is_in_flags.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 10:38:30 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/18 11:15:24 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/19 09:47:27 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/19 13:27:59 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*ft_s_converter(char *str, size_t accu, char *flags)
+int		ft_is_in_flags(char c, t_printf *pf)
 {
-	if (!str)
-		str = "(null)";
-	if (ft_char_in_string('.', flags) && accu < ft_strlen(str))
-		return (ft_strndup(str, accu));
-	return (ft_strdup(str));
+	return (ft_char_in_string(c, pf->flags));
 }

@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/15 09:48:00 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 09:53:08 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,15 +77,15 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 	while (*s)
 	{
 		if (!(tmp = ft_set_tmp(s)))
-			return (0);
+			return (-1);
 		s += ft_strlen(tmp[0]) + ft_strlen(tmp[1]);
 		if (!(tmp[2] = ft_strfjoin(tmp[0], tmp[1], 3)))
-			return (0);
+			return (-1);
 		if (!(tmp[3] = ft_analyser(tmp[2], pf, ap)))
-			return (0);
+			return (-1);
 		free(tmp[2]);
 		if (!(result = ft_join_result(result, tmp[3], pf)))
-			return (0);
+			return (-1);
 		free(tmp);
 	}
 	pos += pf->return_size;
@@ -95,7 +95,6 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 }
 
 int			ft_printf(const char *s, ...)
-//	__attribute__((format(printf, 1, 2)));
 {
 	va_list		ap;
 	size_t		pos;
@@ -112,7 +111,8 @@ int			ft_printf(const char *s, ...)
 		free(pf);
 		return (ft_strlen(s));
 	}
-	if (!(pos = ft_core_printf(s, pos, pf, ap)))
+	pos = ft_core_printf(s, pos, pf, ap);
+	if (pos == (size_t)-1)
 		return (-1);
 	va_end(ap);
 	free(pf);

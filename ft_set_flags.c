@@ -6,14 +6,14 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/29 13:47:38 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 14:14:35 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/19 13:31:17 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	ft_isone_nine(int c)
+int			ft_isone_nine(int c)
 {
 	return (c >= '1' && c <= '9');
 }
@@ -25,9 +25,17 @@ t_printf	*ft_set_flags(t_printf *pf, char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] && str[i] != '%' && !ft_isone_nine(str[i]))
+	while (str[i] && str[i] != '%')
 	{
-		if (ft_is_flag(str[i]) && !ft_char_in_string(str[i], pf->flags))
+		if (str[i] == '0')
+		{
+			if (!ft_isdigit(str[i - 1]) && str[i - 1] != '.')
+			{
+				pf->flags[j] = str[i];
+				j++;
+			}
+		}
+		else if (ft_is_flag(str[i]) && !ft_char_in_string(str[i], pf->flags))
 		{
 			pf->flags[j] = str[i];
 			j++;

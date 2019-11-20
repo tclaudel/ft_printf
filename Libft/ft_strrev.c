@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_s_converter.c                                 .::    .:/ .      .::   */
+/*   ft_strrev.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 10:38:30 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/18 11:15:24 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/20 11:11:07 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/20 11:11:10 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-
-char	*ft_s_converter(char *str, size_t accu, char *flags)
+char		*ft_strrev(char *str)
 {
-	if (!str)
-		str = "(null)";
-	if (ft_char_in_string('.', flags) && accu < ft_strlen(str))
-		return (ft_strndup(str, accu));
-	return (ft_strdup(str));
+	int		i;
+	int		l;
+	char	t;
+
+	l = 0;
+	while (str[l] != '\0')
+		l++;
+	i = -1;
+	while (++i < --l)
+	{
+		t = str[i];
+		str[i] = str[l];
+		str[l] = t;
+	}
+	return (str);
 }
