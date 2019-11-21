@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 09:23:56 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 13:30:10 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 14:32:40 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 {
 	char	*tmp;
 
+	// dprintf(1, "str\t: |%s|\nflags\t: %s\nwidth\t: %zu\naccu\t: %zu\n",str, pf->flags, pf->width, pf->accu);
 	if (!(tmp = ft_apply_convert(pf, ap)))
 		return (NULL);
 	if (!(tmp = ft_apply_flags(tmp, pf)))

@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/07 13:46:51 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/20 11:11:44 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 13:07:13 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,7 +68,7 @@ int				ft_lstsize(t_list *lst);
 char			*ft_strndup(const char *s, size_t n);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_itoa_u_base(unsigned int n, char *base);
-char			*ft_itoa_ll_base(long long n, char *base);
+char			*ft_itoa_ll_base(unsigned long n, char *base);
 char			*ft_itoa_base(int n, char *base);
 int				ft_char_in_string(char c, char *str);
 void			ft_strdel(char **ptr);

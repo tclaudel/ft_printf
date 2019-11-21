@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/20 11:23:52 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 08:19:32 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,5 +53,7 @@ char			*ft_apply_flags(char *str, t_printf *pf);
 char			*ft_apply_convert(t_printf *pf, va_list ap);
 int				ft_isone_nine(int c);
 int				ft_is_in_flags(char c, t_printf *pf);
+char			*ft_zero_flag(char *str, t_printf *pf, char sign);
+char			*ft_width_accu(char *str, t_printf *pf, int *sign, char *str2);
 
 #endif
