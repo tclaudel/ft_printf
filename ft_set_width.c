@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/31 11:46:02 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 12:19:52 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 16:39:12 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ size_t	ft_wildcard(int nb, t_printf *pf)
 
 size_t	ft_width(char *str, t_printf *pf, va_list ap, size_t i)
 {
-
+	pf->got_width = 1;
 	if (str[i] == '*')
 	{
 		pf->width = ft_wildcard(va_arg(ap, int), pf);
@@ -54,6 +54,7 @@ size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 {
 	int		nb;
 
+	pf->got_accu = 1;
 	i++;
 	if (str[i] == '*')
 	{
@@ -62,6 +63,7 @@ size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 			pf->accu = ft_wildcard(nb, pf);
 		else
 		{
+			pf->accu = ft_wildcard(nb, pf);
 			pf->accu = 0;
 		}
 		

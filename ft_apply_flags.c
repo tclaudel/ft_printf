@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 14:30:58 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 13:01:41 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 16:50:59 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,20 +34,20 @@
 // 		zero = ft_calloc(sizeof(char), 1);
 // 	// dprintf(1, "zero\t: |%s|\n", zero);
 // 	if (pf->width >= pf->accu)
-// 		zero = ft_width_accu(zero, pf, sign, &str);
+// 		zero = ft_width_accu(zero, pf, sign, str);
 // 	//dprintf(1, "zero\t: |%s|\n", zero);
 // 	return (zero);
 // }
 
-// char	*ft_width_accu(char *str, t_printf *pf, int *sign, char **str2)
+// char	*ft_width_accu(char *str, t_printf *pf, int *sign, char *str2)
 // {
 // 	char	*whitespace;
 // 	size_t	lmalloc;
 // 	size_t	lenstr;
 // 	char	*result;
 
-// 	// dprintf(1, "str\t: |%s|\nstr2\t: |%s|\n", str, *str2);
-// 	lenstr = ft_strlen(str) + ft_strlen(*str2);
+// 	// dprintf(1, "str\t: %s\nstr2\t: %s\n", str, str2);
+// 	lenstr = ft_strlen(str) + ft_strlen(str2);
 // 	if (*sign && !ft_is_in_flags('-', pf))
 // 		str = ft_strfjoin("-", str, 0);
 // 	lmalloc = (pf->width > lenstr ? pf->width - lenstr/* - missing*/ : 0);
@@ -57,14 +57,7 @@
 // 	// dprintf(1, "sign\t: %c\n", *sign + '0');
 // 	// dprintf(1, "str\t: %s\nlenstr\t: %zu\nwidth\t: %zu\naccu\t: %zu\n", str, lenstr, pf->width, pf->accu);
 // 	// dprintf(1, "str\t: %s\nwhit\t: |%s|\n", str, whitespace);
-// 	if(pf->width > pf->accu && pf->accu != 0 && ft_is_in_flags('-', pf))
-// 	{
-// 		result = ft_strfjoin(str, *str2, 0);
-// 		// dprintf(1,"white\t: |%s|\n", whitespace);
-// 		free(*str2);
-// 		*str2 = ft_strdup(whitespace);
-// 	}
-// 	else if (!ft_is_in_flags('-', pf))
+// 	if (!ft_is_in_flags('-', pf))
 // 	{
 // 		result = ft_strfjoin(whitespace, str, 3);
 // 		if(*sign)
@@ -100,88 +93,80 @@
 char	*ft_del_neg(char *str)
 {
 	char		*tmp;
-	size_t		j;
-	size_t		i;
-	j = 0;
-	i = 0;
-	while (ft_char_in_string(str[j], "-"))
-		j++;
-	if (!(tmp = malloc(sizeof(char) * (ft_strlen(str) - j + 1 + 2))))
+	
+	if (!(tmp = ft_calloc(sizeof(char), (ft_strlen(str)))))
 		return (NULL);
-	j = 0;
-	while (str[i])
-	{
-		if (ft_char_in_string(str[i], "-"))
-			i++;
-		else
-			tmp[j++] = str[i++];
-	}
-	tmp[j] = 0;
+	ft_memcpy(tmp, str + 1, ft_strlen(str));
 	ft_memcpy(str, tmp, ft_strlen(tmp) + 1);
 	ft_strdel(&tmp);
 	return (str);
 }
 
-char	*ft_apply_int(char *str, t_printf *pf, char sign)
+char	*ft_apply_accu(char *str, t_printf *pf)
 {
-	char	*tmp[2];
+	//dprintf(1, "ft_apply_accu\nstr\t: |%s|\n", str);
+	char	*tmp;
+	
+	if (ft_char_in_string(pf->option, "duixX"))
+	{
+		if (pf->accu > ft_strlen(str))
+		{
+			if (!(tmp = ft_calloc(sizeof(char), pf->accu - ft_strlen(str) + 1)))
+				return (NULL);
+			ft_memset(tmp, '0', pf->accu - ft_strlen(str));
+			str = ft_strfjoin(tmp, str, 1);
+		}
+	}
+	//dprintf(1, "str\t: |%s|\nlen\t: |%zu|\n", str, ft_strlen(str));
+	return (str);
+}
 
-	dprintf(1, "str\t: |%s|\nsign\t: |%c|\n", str, sign + '0');
-	if (pf->accu > ft_strlen(str))
+char	*ft_apply_width(char *str, t_printf *pf)
+{
+	// dprintf(1, "ft_apply_width\nstr\t: |%s|\n", str);
+	char	*padding;
+	size_t	lpadding;
+
+
+	lpadding = pf->width - ft_strlen(str) - pf->sign;
+	// dprintf(1, "lpadd\t: |%zu|\n", lpadding);
+	if (!(padding = ft_calloc(sizeof(char), lpadding + 1)))
+		return (NULL);
+	if (ft_is_in_flags('0', pf) && !ft_is_in_flags('-', pf))
+		ft_memset(padding, '0', lpadding);
+	else
+		ft_memset(padding, ' ', lpadding);
+	if (!ft_is_in_flags('0', pf) && pf->sign && !ft_is_in_flags('-', pf) && pf->got_accu)
 	{
-		if (!(tmp[0] = ft_calloc(sizeof(char), pf->accu - ft_strlen(str) + 1)))
-			return (NULL);
-		ft_memset(tmp[0], '0', pf->accu - ft_strlen(str));
+		padding[0] = '-';
+		pf->sign = 0;
 	}
-	else
-		tmp[0] = ft_calloc(sizeof(char), 1);
-	dprintf(1, "diff\t: |%zu|\n", pf->width - ft_strlen(tmp[0])- 1);
-	if (pf->width >= pf->accu + ft_strlen(str))
+	else if (!ft_is_in_flags('0', pf) && pf->sign && !ft_is_in_flags('-', pf) && !pf->got_accu)
 	{
-		puts("prout");
-		if (!(tmp[1] = ft_calloc(sizeof(char), pf->width - ft_strlen(tmp[0])- 1)))
-			return (NULL);
-		ft_memset(tmp[1], ' ', pf->width - (pf->accu + ft_strlen(str)) + 1);
+		str = ft_strfjoin("-", str, 2);
+		pf->sign = 0;
 	}
+	//dprintf(1, "str\t: |%s|\npadd\t: |%s|\n", str, padding);
+	if(ft_is_in_flags('-', pf))
+		str = ft_strfjoin(str, padding, 3);
 	else
-		tmp[1] = ft_calloc(sizeof(char), 1);
-	str = ft_zero_str(str, pf);
-	if (sign && ft_is_in_flags('0',pf))
-		tmp[1] = ft_strfjoin("-", tmp[1], 2);
-	else if (sign && !ft_is_in_flags('0',pf))
-		tmp[0] = ft_strfjoin("-", tmp[0], 2);
-	dprintf(1,"tmp[0]\t: |%s|\ntmp[1]\t: |%s|\nstr\t: |%s|\n", tmp[0], tmp[1], str);
-	tmp[0] = ft_strfjoin(tmp[0], str, 0);
-	dprintf(1,"tmp[0]\t: |%s|\ntmp[1]\t: |%s|\nstr\t: |%s|\n", tmp[0], tmp[1], str);
-	//dprintf(1, "joined\t: |%s|\n", tmp[0]);
-	if(!ft_is_in_flags('-', pf) && (pf->width >= pf->accu + ft_strlen(str)))
-		tmp[0] = ft_strfjoin(tmp[1], tmp[0], 0);
-	else
-		tmp[0] = ft_strfjoin(tmp[0], tmp[1], 0);
-	return (tmp[0]);
+		str = ft_strfjoin(padding, str, 3);
+	return (str);
 }
 
 char	*ft_apply_flags(char *str, t_printf *pf)
 {
-	char	*tmp;
-	int		sign;
-	sign = (str[0] == '-');
-	dprintf(1, "STR\t: |%s|\n", str);
-	if (sign)
+	// dprintf(1, "str\t: |%s|\nflags\t: %s\nwidth\t: %zu\naccu\t: %zu\n",str, pf->flags, pf->width, pf->accu);
+	pf->sign = (str[0] == '-');
+	if (pf->sign)
 		str = ft_del_neg(str);
-	if (pf->width + 1 > ft_strlen(str))
-		pf->width -= sign;
-	if (ft_char_in_string(pf->option, "diuxX"))
-		tmp = ft_apply_int(str, pf, sign);
-	else
-		tmp = str;
-	// dprintf(1, "str\t: |%s|\ntmp\t: |%s|\n", str, tmp);
-	// if (!ft_char_in_string('-', pf->flags) || (ft_char_in_string(pf->option, "diuxX") && sign))
-	// 	str = ft_strfjoin(tmp, str, 3);
-	// else
-	// 	str = ft_strfjoin(str, tmp, 3);
-	// dprintf(1, "sign\t: %c\n", sign + '0');
-	ft_bzero(pf->flags, 5);
-	//dprintf(1, "FINAL STR : %s\n", str);
-	return (tmp);
+	str = ft_zero_str(str, pf);
+	// dprintf(1, "str\t: %s\n", str);
+	if (pf->got_accu)
+		str = ft_apply_accu(str, pf);
+	if (pf->width >= ft_strlen(str) + pf->sign)
+		str = ft_apply_width(str, pf);
+	if	(pf->sign)
+		str = ft_strfjoin("-", str, 2);
+	return (str);
 }

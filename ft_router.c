@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 09:23:56 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 09:55:32 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 16:48:19 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 {
 	char	*tmp;
 
-	dprintf(1, "str\t: |%s|\nflags\t: %s\nwidth\t: %zu\naccu\t: %zu\n",str, pf->flags, pf->width, pf->accu);
+	// dprintf(1, "str\t: |%s|\nflags\t: %s\nwidth\t: %zu\naccu\t: %zu\n",str, pf->flags, pf->width, pf->accu);
 	if (!(tmp = ft_apply_convert(pf, ap)))
 		return (NULL);
 	if (!(tmp = ft_apply_flags(tmp, pf)))
@@ -25,5 +25,8 @@ char	*ft_router(char *str, t_printf *pf, va_list ap)
 	if (!(str = ft_strfjoin(tmp, str, 1)))
 		return (NULL);
 	ft_bzero(&pf->width, sizeof(size_t) * 2);
+	pf->got_accu = 0;
+	pf->got_width = 0;
+	pf->sign = 0;
 	return (str);
 }

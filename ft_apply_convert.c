@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 09:23:17 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 12:22:18 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 16:48:58 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,13 +15,13 @@
 
 char		*ft_zero_str(char *tmp, t_printf *pf)
 {
-	if (ft_char_in_string(pf->option, "diuxX") && !ft_strncmp(tmp, "0", 1) &&
-	pf->accu == 0 && pf->width != 0 && ft_is_in_flags('.', pf))
+	// dprintf(1, "got_w?\t: %c\n", pf->got_width + '0');
+	if (ft_char_in_string(pf->option, "diuxX") && !ft_strncmp(tmp, "0", 1) && pf->got_accu && !pf->got_width && !ft_is_in_flags('0', pf))
 	{
 		ft_strdel(&tmp);
-		return (ft_calloc(sizeof(char), 1));
+		tmp = ft_calloc(sizeof(char), 1);
 	}
-	dprintf(1, "conv\t: %s\n", tmp);
+	// dprintf(1, "conv\t: |%s|\n", tmp);
 	return (tmp);
 }
 
