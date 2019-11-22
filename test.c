@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:15:11 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 11:09:02 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 13:06:15 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -161,7 +161,7 @@ int		ft_random_nb(size_t length)
 	}
 	while(i < length)
 	{
-		key = rand() % sizeof(charset) -1;
+		key = rand() % (sizeof(charset) -1);
 		randstr[i] = charset[key];
 		i++;
 	}
@@ -184,7 +184,8 @@ unsigned int	ft_random_unb(size_t length)
 	randstr = malloc(sizeof(char) * (length +1));
 	while(i < length)
 	{
-		key = rand() % sizeof(charset) -1;
+		
+		key = rand() % (sizeof(charset) -1);
 		randstr[i] = charset[key];
 		i++;
 	}

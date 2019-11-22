@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/31 11:46:02 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 14:57:19 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 12:19:52 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,10 +52,19 @@ size_t	ft_width(char *str, t_printf *pf, va_list ap, size_t i)
 
 size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 {
+	int		nb;
+
 	i++;
 	if (str[i] == '*')
 	{
-		pf->accu = ft_wildcard(va_arg(ap, int), pf);
+		nb = va_arg(ap, int);
+		if(nb > 0)
+			pf->accu = ft_wildcard(nb, pf);
+		else
+		{
+			pf->accu = 0;
+		}
+		
 		i++;
 	}
 	else
@@ -69,12 +78,17 @@ size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 
 char	*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i)
 {
-	while (str[i] && !ft_is_option(str[i]))
+	size_t j;
+
+	while (str[i] && (ft_is_flag(str[i]) || ft_isdigit(str[i])))
 	{
+		j = i;
 		if (str[i] == '.')
 			i = ft_accu(str, pf, ap, i);
 		else
 			i = ft_width(str, pf, ap, i);
+		if (j == i)
+			i++;
 	}
 	return (str + i);
 }
