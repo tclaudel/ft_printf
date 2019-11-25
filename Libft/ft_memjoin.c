@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strjoin_zero.c                                .::    .:/ .      .::   */
+/*   ft_memjoin.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/12 13:24:20 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 13:58:37 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/25 14:33:29 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/25 15:30:55 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-char	*ft_strjoin_zero(char *s1, char *s2)
+void	*ft_memjoin(void *s1, void *s2, size_t size1, size_t size2)
 {
-	size_t		lmalloc;
-	char		*str;
-	size_t		i;
-	size_t		ls1;
+	char	*rslt;
 
-	i = 0;
-	ls1 = ft_strlen(s1);
-	lmalloc = ls1 + ft_strlen(s2);
-	if (!(str = (char *)ft_calloc(sizeof(char), (lmalloc + 2))))
+    rslt = NULL;
+	if (!s1 && !s2)
 		return (NULL);
-	ft_memcpy(str, s1, ls1);
-	ft_memcpy(str + ls1 + 1, s2, ft_strlen(s2) + 1);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	if (!s1)
+	{
+		rslt = ft_calloc(sizeof(char), size2);
+		ft_memmove(rslt, s2, size2);
+		return ((void *)rslt);
+	}
+	if (!s2)
+	{
+		rslt = ft_calloc(sizeof(char), size1);
+		ft_memmove(rslt, s1, size1);
+		return ((void *)rslt);
+	}
+	rslt = ft_calloc(sizeof(char), size1 + size2);
+	ft_memmove(rslt, s1, size1);
+	ft_memmove(rslt + size1, s2, size2);
+	return ((void *)rslt);
 }

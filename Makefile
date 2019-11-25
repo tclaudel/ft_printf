@@ -6,7 +6,7 @@
 #    By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/11 16:32:18 by tclaudel     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/25 09:25:04 by tclaudel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/25 14:39:39 by tclaudel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -28,7 +28,8 @@ SRCS_LIBFT	=	$(addprefix Libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
 				ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
 				ft_toupper.c ft_strnlen.c ft_strndup.c ft_itoa_u_base.c \
 				ft_itoa_ll_base.c ft_itoa_base.c ft_char_in_string.c\
-				ft_strfjoin.c ft_strdel.c ft_putchar.c ft_putstr.c ft_strrev.c)
+				ft_strfjoin.c ft_strdel.c ft_putchar.c ft_putstr.c ft_strrev.c\
+				ft_memjoin.c)
 
 SRC_PATH = ./
 

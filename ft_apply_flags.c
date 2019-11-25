@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 14:30:58 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 09:59:56 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 17:47:07 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,15 +57,20 @@ char	*ft_apply_minus(char *str, t_printf *pf)
 
 	if (pf->width > ft_strlen(str))
 	{
-		if (!(tmp = ft_calloc(sizeof(char), (pf->width - ft_strlen(str) + 1))))
+		if (!(tmp = ft_calloc(sizeof(char), (pf->width - ft_strlen(str) + 1+ pf->zero))))
 			return ((char *)-1);
-		ft_memset(tmp, ' ', (pf->width - ft_strlen(str)));
+		ft_memset(tmp, ' ', (pf->width - ft_strlen(str) + pf->zero));
 		tmp = ft_strfjoin(str, tmp, 3);
 	}
 	else
 	{
 		tmp = ft_strdup(str);
 		ft_strdel(&str);
+	}
+	if (pf->zero)
+	{
+		tmp[0] = 0;
+		pf->current_size = pf->width - ft_strlen(str) + 1;
 	}
 	return (tmp);
 }

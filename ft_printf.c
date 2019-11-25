@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 09:59:09 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 17:52:10 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,21 +25,22 @@ t_printf	*setup_struct(void)
 	setup->zero = 0;
 	setup->sign = 0;
 	setup->return_size = 0;
+	setup->current_size = 0;
 	ft_bzero(setup->flags, 5);
 	return (setup);
 }
 
 char		*ft_join_result(char *result, char *tmp, t_printf *pf)
 {
-	pf->return_size += ft_strlen(tmp);
 	if (pf->option == 'c' && pf->zero == 1)
 	{
-		if (!(result = ft_strjoin_zero(result, tmp)))
+		// dprintf(1, "return_size\t: %zu\ncurrent_size\t: %zu\n", pf->return_size, pf->current_size);
+		if (!(result = ft_memjoin(result, tmp, pf->return_size , pf->current_size)))
 			return (NULL);
 	}
 	else
 	{
-		if (!(result = ft_strfjoin(result, tmp, 3)))
+		if (!(result = ft_memjoin(result, tmp, pf->return_size , pf->current_size)))
 			return (NULL);
 	}
 	return (result);
@@ -74,9 +75,13 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 
 	pos = (char *)ft_memchr(s, '%', ft_strlen(s)) - s;
 	result = ft_strndup(s, pos);
+	// dprintf(1, "result\t\t: %s\n", result);
 	s += pos;
+	pf->return_size += pos;
 	while (*s)
 	{
+		pf->current_size = 0;
+		pf->zero = 0;
 		if (!(tmp = ft_set_tmp(s)))
 			return (-1);
 		s += ft_strlen(tmp[0]) + ft_strlen(tmp[1]);
@@ -88,8 +93,11 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 		if (!(result = ft_join_result(result, tmp[3], pf)))
 			return (-1);
 		free(tmp);
+		pf->zero = 0;
+		// dprsintf(1, "ret\t: %zu\ncurr\t: %zu\n", pf->return_size, pf->current_size);
+		pf->return_size += pf->current_size;
 	}
-	pos += pf->return_size;
+	pos = pf->return_size;
 	write(1, result, pos);
 	free(result);
 	return (pos);

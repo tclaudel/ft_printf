@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 10:34:21 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 14:41:07 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@ typedef struct	s_printf
 	size_t		width;
 	size_t		accu;
 	size_t		return_size;
+	size_t		current_size;
 }				t_printf;
 
 int				ft_printf(const char *fmt, ...);
@@ -57,5 +58,6 @@ int				ft_is_in_flags(char c, t_printf *pf);
 char			*ft_zero_flag(char *str, t_printf *pf, char sign);
 char			*ft_width_accu(char *str, t_printf *pf, int *sign, char *str2);
 char			*ft_itoa_pf(int n, t_printf *pf);
+void			*ft_memjoin(void *s1, void *s2, size_t size1, size_t size2);
 
 #endif
