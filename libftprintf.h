@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 09:23:58 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 10:34:21 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,6 @@ typedef struct	s_printf
 	char		flags[5];
 	char		option;
 	char		zero;
-	char		got_accu;
-	char		got_width;
 	char		sign;
 	size_t		width;
 	size_t		accu;
