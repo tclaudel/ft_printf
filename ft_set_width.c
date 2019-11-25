@@ -6,36 +6,31 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/31 11:46:02 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 16:39:12 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 09:17:20 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-size_t	ft_wildcard(int nb, t_printf *pf)
+size_t		ft_wildcard(int nb, t_printf *pf)
 {
 	size_t	i;
-	size_t	n;
 
-	n = 0;
 	i = ft_strlen(pf->flags);
 	if (nb < 0)
 	{
 		if (!ft_char_in_string('-', pf->flags))
 			pf->flags[i] = '-';
 		if (nb == -2147483648)
-			return(2147483648);
-		n = -nb;
+			return (2147483648);
+		nb = -nb;
 	}
-	else
-		n = nb;
-	return (n);
+	return (nb);
 }
 
-size_t	ft_width(char *str, t_printf *pf, va_list ap, size_t i)
+size_t		ft_width(char *str, t_printf *pf, va_list ap, size_t i)
 {
-	pf->got_width = 1;
 	if (str[i] == '*')
 	{
 		pf->width = ft_wildcard(va_arg(ap, int), pf);
@@ -50,23 +45,19 @@ size_t	ft_width(char *str, t_printf *pf, va_list ap, size_t i)
 	return (i);
 }
 
-size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
+size_t		ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 {
 	int		nb;
 
-	pf->got_accu = 1;
 	i++;
+	nb = 0;
 	if (str[i] == '*')
 	{
 		nb = va_arg(ap, int);
-		if(nb > 0)
-			pf->accu = ft_wildcard(nb, pf);
+		if (nb < 0)
+			pf->accu = (size_t)-1;
 		else
-		{
 			pf->accu = ft_wildcard(nb, pf);
-			pf->accu = 0;
-		}
-		
 		i++;
 	}
 	else
@@ -78,19 +69,14 @@ size_t	ft_accu(char *str, t_printf *pf, va_list ap, size_t i)
 	return (i);
 }
 
-char	*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i)
+char		*ft_set_width(char *str, t_printf *pf, va_list ap, size_t i)
 {
-	size_t j;
-
 	while (str[i] && (ft_is_flag(str[i]) || ft_isdigit(str[i])))
 	{
-		j = i;
 		if (str[i] == '.')
 			i = ft_accu(str, pf, ap, i);
 		else
 			i = ft_width(str, pf, ap, i);
-		if (j == i)
-			i++;
 	}
 	return (str + i);
 }
