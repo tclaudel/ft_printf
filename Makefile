@@ -6,14 +6,15 @@
 #    By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/11 16:32:18 by tclaudel     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/20 11:11:56 by tclaudel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/25 09:25:04 by tclaudel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 SRCS_NAME	=	ft_d_converter.c ft_p_converter.c ft_s_converter.c ft_upx_converter.c ft_c_converter.c\
 				ft_u_converter.c ft_x_converter.c ft_pourcent_converter.c ft_printf.c ft_is_flag.c ft_is_option.c ft_is_pourcent.c\
-				ft_analyser.c ft_set_flags.c ft_set_width.c ft_apply_flags.c ft_apply_convert.c ft_router.c ft_strjoin_zero.c ft_is_in_flags.c
+				ft_analyser.c ft_set_flags.c ft_set_width.c ft_apply_flags.c ft_apply_convert.c ft_router.c ft_strjoin_zero.c ft_is_in_flags.c\
+				ft_itoa_pf.c
 
 SRCS_LIBFT	=	$(addprefix Libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
 				ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \

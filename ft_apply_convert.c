@@ -6,22 +6,21 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 09:23:17 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 16:48:58 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 09:59:53 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char		*ft_zero_str(char *tmp, t_printf *pf)
+static char		*ft_zero_str(char *tmp, t_printf *pf)
 {
-	// dprintf(1, "got_w?\t: %c\n", pf->got_width + '0');
-	if (ft_char_in_string(pf->option, "diuxX") && !ft_strncmp(tmp, "0", 1) && pf->got_accu && !pf->got_width && !ft_is_in_flags('0', pf))
+	if (ft_char_in_string(pf->option, "diuxX") && !ft_strncmp(tmp, "0", 1) &&
+	pf->accu == 0 && ft_is_in_flags('.', pf))
 	{
 		ft_strdel(&tmp);
-		tmp = ft_calloc(sizeof(char), 1);
+		return (ft_calloc(sizeof(char), 1));
 	}
-	// dprintf(1, "conv\t: |%s|\n", tmp);
 	return (tmp);
 }
 
@@ -32,7 +31,7 @@ char			*ft_apply_convert(t_printf *pf, va_list ap)
 	if (pf->option == 'c')
 		tmp = ft_c_converter(va_arg(ap, int), pf);
 	else if (pf->option == 'd' || pf->option == 'i')
-		tmp = ft_d_converter(va_arg(ap, int));
+		tmp = ft_d_converter(va_arg(ap, int), pf);
 	else if (pf->option == 'p')
 		tmp = ft_p_converter(va_arg(ap, long long), pf);
 	else if (pf->option == 's')
@@ -47,5 +46,5 @@ char			*ft_apply_convert(t_printf *pf, va_list ap)
 		tmp = ft_pourcent_converter();
 	else
 		tmp = ft_c_converter(pf->option, pf);
-	return (tmp);
+	return (ft_zero_str(tmp, pf));
 }

@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 14:52:11 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 09:59:09 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,6 @@ t_printf	*setup_struct(void)
 	setup->option = 0;
 	setup->accu = 0;
 	setup->zero = 0;
-	setup->got_accu = 0;
 	setup->sign = 0;
 	setup->return_size = 0;
 	ft_bzero(setup->flags, 5);

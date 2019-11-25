@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 10:06:37 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 16:38:57 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 09:23:58 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ typedef struct	s_printf
 int				ft_printf(const char *fmt, ...);
 char			*ft_strjoin_zero(char *s1, char *s2);
 char			*ft_c_converter(int nb, t_printf *pf);
-char			*ft_d_converter(int nb);
+char			*ft_d_converter(int nb, t_printf *pf);
 char			*ft_i_converter(int nb);
 char			*ft_s_converter(char *str, size_t width, char *flags);
 char			*ft_p_converter(long long address, t_printf *pf);
@@ -58,6 +58,6 @@ int				ft_isone_nine(int c);
 int				ft_is_in_flags(char c, t_printf *pf);
 char			*ft_zero_flag(char *str, t_printf *pf, char sign);
 char			*ft_width_accu(char *str, t_printf *pf, int *sign, char *str2);
-char		*ft_zero_str(char *tmp, t_printf *pf);
+char			*ft_itoa_pf(int n, t_printf *pf);
 
 #endif
