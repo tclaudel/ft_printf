@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_c_converter.c                                 .::    .:/ .      .::   */
+/*   ft_memfjoin.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/28 10:31:22 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/26 09:39:28 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/26 10:08:07 by tclaudel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/26 10:17:33 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-char	*ft_c_converter(int nb, t_printf *pf)
+char			*ft_memfjoin(void *s1, void *s2, size_t size1, size_t size2)
 {
-	char *c;
+	char	*str;
 
-	if (!(c = malloc(sizeof(char) * 2)))
-		return (NULL);
-	c[0] = nb;
-	c[1] = 0;
-	if (nb == 0)
-	{
-		pf->zero = 1;
-		pf->current_size++;
-	}
-	return (c);
+	if (!(str = ft_memjoin(s1, s2, size1, size2)))
+		return (0);
+	ft_strdel((char **)&s1);
+	ft_strdel((char **)&s2);
+	return (str);
 }

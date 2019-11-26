@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/07 13:46:51 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/20 13:07:13 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/26 10:13:19 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,5 +76,7 @@ char			*ft_strfjoin(char *s1, char *s2, int free);
 void			ft_putstr(const char *str);
 void			ft_putchar(char c);
 char			*ft_strrev(char *str);
+void			*ft_memjoin(void *s1, void *s2, size_t size1, size_t size2);
+char			*ft_memfjoin(void *s1, void *s2, size_t size1, size_t size2);
 
 #endif

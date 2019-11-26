@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/28 16:46:55 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 17:52:10 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/26 11:09:11 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,18 +32,23 @@ t_printf	*setup_struct(void)
 
 char		*ft_join_result(char *result, char *tmp, t_printf *pf)
 {
+	char	*s;
+
 	if (pf->option == 'c' && pf->zero == 1)
 	{
-		// dprintf(1, "return_size\t: %zu\ncurrent_size\t: %zu\n", pf->return_size, pf->current_size);
-		if (!(result = ft_memjoin(result, tmp, pf->return_size , pf->current_size)))
+		if (!(s = ft_memjoin(result, tmp, pf->return_size, pf->current_size)))
 			return (NULL);
 	}
 	else
 	{
-		if (!(result = ft_memjoin(result, tmp, pf->return_size , pf->current_size)))
+		if (!(s = ft_memjoin(result, tmp, pf->return_size, pf->current_size)))
 			return (NULL);
 	}
-	return (result);
+	ft_strdel(&result);
+	ft_strdel(&tmp);
+	pf->zero = 0;
+	pf->return_size += pf->current_size;
+	return (s);
 }
 
 char		**ft_set_tmp(const char *str)
@@ -73,9 +78,7 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 	char		**tmp;
 	char		*result;
 
-	pos = (char *)ft_memchr(s, '%', ft_strlen(s)) - s;
 	result = ft_strndup(s, pos);
-	// dprintf(1, "result\t\t: %s\n", result);
 	s += pos;
 	pf->return_size += pos;
 	while (*s)
@@ -93,14 +96,10 @@ int			ft_core_printf(const char *s, size_t pos, t_printf *pf, va_list ap)
 		if (!(result = ft_join_result(result, tmp[3], pf)))
 			return (-1);
 		free(tmp);
-		pf->zero = 0;
-		// dprsintf(1, "ret\t: %zu\ncurr\t: %zu\n", pf->return_size, pf->current_size);
-		pf->return_size += pf->current_size;
 	}
-	pos = pf->return_size;
-	write(1, result, pos);
+	write(1, result, pf->return_size);
 	free(result);
-	return (pos);
+	return (pf->return_size);
 }
 
 int			ft_printf(const char *s, ...)
@@ -120,6 +119,7 @@ int			ft_printf(const char *s, ...)
 		free(pf);
 		return (ft_strlen(s));
 	}
+	pos = (char *)ft_memchr(s, '%', ft_strlen(s)) - s;
 	pos = ft_core_printf(s, pos, pf, ap);
 	if (pos == (size_t)-1)
 		return (-1);

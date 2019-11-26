@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 14:30:58 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 17:47:07 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/26 11:04:56 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,11 +53,13 @@ char	*ft_apply_accu(char *str, t_printf *pf)
 
 char	*ft_apply_minus(char *str, t_printf *pf)
 {
-	char *tmp;
+	char	*tmp;
+	int		l;
 
+	l = ft_strlen(str);
 	if (pf->width > ft_strlen(str))
 	{
-		if (!(tmp = ft_calloc(sizeof(char), (pf->width - ft_strlen(str) + 1+ pf->zero))))
+		if (!(tmp = ft_calloc(sizeof(char), (pf->width - l + 1 + pf->zero))))
 			return ((char *)-1);
 		ft_memset(tmp, ' ', (pf->width - ft_strlen(str) + pf->zero));
 		tmp = ft_strfjoin(str, tmp, 3);
@@ -70,7 +72,7 @@ char	*ft_apply_minus(char *str, t_printf *pf)
 	if (pf->zero)
 	{
 		tmp[0] = 0;
-		pf->current_size = pf->width - ft_strlen(str) + 1;
+		pf->current_size = pf->width;
 	}
 	return (tmp);
 }
@@ -78,10 +80,12 @@ char	*ft_apply_minus(char *str, t_printf *pf)
 char	*ft_apply_zero(char *str, t_printf *pf)
 {
 	char	*tmp;
+	size_t	l;
 
-	if (pf->width > ft_strlen(str))
+	l = ft_strlen(str);
+	if (pf->width > l)
 	{
-		if (!(tmp = ft_calloc(sizeof(char), (pf->width - ft_strlen(str) + 1))))
+		if (!(tmp = ft_calloc(sizeof(char), (pf->width - l + 1 + pf->zero))))
 			return ((char *)-1);
 		if (ft_is_in_flags('0', pf) && !ft_is_in_flags('.', pf))
 		{
@@ -92,14 +96,12 @@ char	*ft_apply_zero(char *str, t_printf *pf)
 				tmp = ft_strfjoin("-", tmp, 2);
 		}
 		else
-			ft_memset(tmp, ' ', (pf->width - ft_strlen(str)));
-		tmp = ft_strfjoin(tmp, str, 3);
+			ft_memset(tmp, ' ', (pf->width - ft_strlen(str) + pf->zero));
+		tmp = ft_strfjoin(tmp, str, 1);
 	}
 	else
-	{
 		tmp = ft_strdup(str);
-		ft_strdel(&str);
-	}
+	ft_strdel(&str);
 	return (tmp);
 }
 
@@ -114,6 +116,11 @@ char	*ft_apply_flags(char *str, t_printf *pf)
 		str = ft_apply_minus(str, pf);
 	else
 		str = ft_apply_zero(str, pf);
+	if (pf->zero && pf->width > 1 && !ft_is_in_flags('-', pf))
+	{
+		str[pf->width - 1] = 0;
+		pf->current_size = pf->width;
+	}
 	pf->sign = 0;
 	return (str);
 }
