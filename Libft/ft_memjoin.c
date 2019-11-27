@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/25 14:33:29 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 15:30:55 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/27 11:30:10 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ void	*ft_memjoin(void *s1, void *s2, size_t size1, size_t size2)
 {
 	char	*rslt;
 
-    rslt = NULL;
+	rslt = NULL;
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
