@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/29 13:47:38 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 13:31:17 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/27 10:00:12 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ t_printf	*ft_set_flags(t_printf *pf, char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] && str[i] != '%')
+	while (str[i] && str[i] != '%' && !ft_is_option(str[i]))
 	{
 		if (str[i] == '0')
 		{
