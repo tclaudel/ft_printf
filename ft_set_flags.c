@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/29 13:47:38 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/27 10:00:12 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 11:11:43 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ char		*ft_new_fmt(char *old, t_printf *pf)
 	if (!(tmp = malloc(sizeof(char) * (ft_strlen(old) - j + 1 + 2))))
 		return (NULL);
 	j = 0;
-	while (old[i])
+	while (old[i] && !ft_is_option(old[i]))
 	{
 		if (ft_char_in_string(old[i], "-"))
 			i++;
@@ -68,6 +68,7 @@ char		*ft_new_fmt(char *old, t_printf *pf)
 			tmp[j++] = old[i++];
 	}
 	tmp[j] = 0;
+	tmp = ft_strfjoin(tmp, old + i, 1);
 	ft_memcpy(old, tmp, ft_strlen(tmp) + 1);
 	ft_strdel(&tmp);
 	return (old);

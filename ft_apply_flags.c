@@ -6,7 +6,7 @@
 /*   By: tclaudel <tclaudel@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 14:30:58 by tclaudel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/26 11:04:56 by tclaudel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 10:28:52 by tclaudel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,7 +72,7 @@ char	*ft_apply_minus(char *str, t_printf *pf)
 	if (pf->zero)
 	{
 		tmp[0] = 0;
-		pf->current_size = pf->width;
+		pf->current_size = pf->width + !pf->width;
 	}
 	return (tmp);
 }
